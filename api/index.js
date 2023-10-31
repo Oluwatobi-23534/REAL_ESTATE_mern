@@ -1,5 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import userRouter from './routes/user_route.js'
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -17,3 +18,6 @@ const app = express();
 app.listen(3000, () => {
     console.log('Server is on the run on lane 3000')
 });
+
+
+app.use("/api/user", userRouter);

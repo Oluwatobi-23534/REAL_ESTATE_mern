@@ -23,23 +23,25 @@ export default function Profile() {
     const storageRef = ref(storage, fileName);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
-     uploadTask.on(
-       "state_changed",
-       (snapshot) => {
-         const progress =
-           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-         setFilePerc(Math.round(progress));
-       },
-       (error) => {
-         setFileUploadError(true);
-       },
-       () => {
-         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>
-           setFormData({ ...formData, avatar: downloadURL })
-         );
-       }
-     );
-  }
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setFilePerc(Math.round(progress));
+      },
+      (error) => {
+        setFileUploadError(true);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setFormData({ ...formData, avatar: downloadURL });
+          setFileUploadError(false); // Reset the error state here
+        });
+      }
+    );
+  };
+  
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>

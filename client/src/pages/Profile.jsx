@@ -62,7 +62,14 @@ export default function Profile() {
         },
         body: JSON.stringify(formData),
       });
+
+      // Check if the response was successful
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+
       const data = await res.json();
+
       if (data.success === false) {
         dispatch(updateUserFailure(data.message));
         return;
@@ -71,9 +78,11 @@ export default function Profile() {
       dispatch(updateUserSuccess(data));
       setUpdateSuccess(true);
     } catch (error) {
+      console.error(error); // Log the error for debugging
       dispatch(updateUserFailure(error.message));
     }
   };
+
 
   const handleDeleteUser = async () => {
     try {
@@ -81,16 +90,26 @@ export default function Profile() {
       const res = await fetch(`/api/user/delete/${currentUser._id}`, {
         method: "DELETE",
       });
+
+      // Check if the response was successful
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+
       const data = await res.json();
+
       if (data.success === false) {
         dispatch(deleteUserFailure(data.message));
         return;
       }
+
       dispatch(deleteUserSuccess(data));
     } catch (error) {
+      console.error(error); // Log the error for debugging
       dispatch(deleteUserFailure(error.message));
     }
   };
+
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>

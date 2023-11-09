@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export default function Contact({ listing }) {
   const [landlord, setLandlord] = useState(null);
@@ -7,6 +8,14 @@ export default function Contact({ listing }) {
 
   const handleChange = (event) => {
     setMessage(event.target.value);
+  };
+
+  Contact.propTypes = {
+    listing: PropTypes.shape({
+      userRef: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      // Add other properties of listing here...
+    }).isRequired,
   };
 
   useEffect(() => {

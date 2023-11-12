@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
-    "@tailwindcss/line-clamp": "^0.4.4",
     "@types/react-router-dom": "^5.3.3",
     "firebase": "^10.5.2",
     "prop-types": "^15.8.1",
@@ -24,6 +23,7 @@
     "swiper": "^11.0.3"
   },
   "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.4.4",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react-swc": "^3.3.2",

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export default function Contact({ listing }) {
   const [landlord, setLandlord] = useState(null);
@@ -36,8 +36,10 @@ export default function Contact({ listing }) {
       {landlord && (
         <div className="flex flex-col gap-2">
           <p>
-            Reach out to <span className="font-semibold">{landlord.username}</span> 
-            regarding <span className="font-semibold">{listing.name.toLowerCase()}</span>
+            Reach out to{" "}
+            <span className="font-semibold">{landlord.username}</span>&nbsp;
+            regarding{" "}
+            <span className="font-semibold">{listing.name.toLowerCase()}</span>
           </p>
           <textarea
             name="message"
